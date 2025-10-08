@@ -1,0 +1,41 @@
+"""
+CP1404/CP5632 Practical
+Data file -> lists program
+"""
+
+FILENAME = "subject_data.txt"
+
+
+def main():
+    subject_data = load_subject_data(FILENAME)
+    print_subject_data(subject_data)
+
+
+def load_subject_data(filename=FILENAME):
+    """Read data from file formatted like: subject,lecturer,number of students."""
+    input_file = open(filename)
+    subject_details = []
+    # for line in input_file:
+    #     print(line)  # See what a line looks like
+    #     print(repr(line))  # See what a line really looks like
+    #     line = line.strip()  # Remove the \n
+    #     parts = line.split(',')  # Separate the data into its parts
+    #     print(parts)  # See what the parts look like (notice the integer is a string)
+    #     parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
+    #     print(parts)  # See if that worked
+    #     print("----------")
+    for line in input_file:
+        line = line.strip()
+        parts = line.split(',')
+        parts[2] = int(parts[2])
+        subject_details.append(parts)
+    input_file.close()
+    return subject_details
+
+
+def print_subject_data(subject_data):
+    for subject, name, students in subject_data:
+        print(f"{subject} is taught by {name} and has {students} students")
+
+
+main()
