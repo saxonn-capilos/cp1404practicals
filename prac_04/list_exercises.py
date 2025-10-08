@@ -7,3 +7,5 @@ Intermediate exercises: Basic list operations
 numbers = []
 for i in range(4):
     numbers.append(int(input("Enter a number: ")))
+for number in numbers:
+    print(number)
