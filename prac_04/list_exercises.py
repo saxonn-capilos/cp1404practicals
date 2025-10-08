@@ -5,10 +5,8 @@ Intermediate exercises: Basic list operations
 
 
 numbers = []
-for i in range(4):
+for i in range(5):
     numbers.append(int(input("Enter a number: ")))
-for number in numbers:
-    print(number)
 first_number = numbers[0]
 last_number = numbers[-1]
 smallest_number = min(numbers)
