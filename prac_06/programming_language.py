@@ -2,7 +2,7 @@
 CP1404/CP5632 Practical
 Intermediate Exercise
 Estimated time: 35 minutes
-Actual time:
+Actual time: 57 minutes
 """
 
 class ProgrammingLanguage:
