@@ -11,10 +11,6 @@ class ProgrammingLanguage:
         """Construct a ProgrammingLanguage from the entered values"""
         self.name = name
         self.typing = typing
-        if self.is_dynamic():
-            self.typing = "Dynamic"
-        else:
-            self.typing = "Static"
         self.reflection = reflection
         self.year = year
 

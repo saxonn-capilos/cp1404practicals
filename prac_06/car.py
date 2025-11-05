@@ -24,7 +24,7 @@ class Car:
         """Drive the car a given distance.
 
         Drive given distance if car has enough fuel
-        or drive until fuel runs out return the distance actually driven.
+        or drive until fuel runs out and return actual distance.
         """
         if distance > self.fuel:
             distance = self.fuel

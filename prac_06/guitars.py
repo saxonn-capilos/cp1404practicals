@@ -18,7 +18,7 @@ while name != "":
     cost = float(input("Cost: $"))
     guitar = Guitar(name, year, cost)
     guitars.append(guitar)
-    print(f"{guitar.name} ({guitar.year}) : ${guitar.cost:.2f} added. \n")
+    print(f"{guitar.name} ({guitar.year}) : ${guitar.cost:.2f} added.\n")
 
     name = input("Name: ")
 
