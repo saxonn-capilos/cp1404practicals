@@ -34,4 +34,6 @@ class Guitar:
         """Returns True if the Guitar is 50 or more years old, False otherwise."""
         return Guitar.get_age(self) >= 50
 
-
+    def to_csv(self):
+        """Returns appropriate string format for csv file."""
+        return f"{self.name},{self.year},{self.cost}"
