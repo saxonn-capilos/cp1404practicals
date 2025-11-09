@@ -2,7 +2,7 @@
 CP1404 - Prac_07
 Do-from-scratch Exercises - Project Management Program
 Estimated time: 240 minutes
-Actual time:
+Actual time: + 40 minutes
 """
 
 

@@ -2,24 +2,32 @@
 CP1404 - Prac_07
 Do-from-scratch Exercises - Project Management Program
 Estimated time: 240 minutes
-Actual time:
+Actual time: + 40 minutes
 """
 
 import datetime
+FILENAME = "projects.txt"
 MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n"
         "-(U)pdate project\n- (Q)uit")
 
 def main():
     """Run project_management program."""
-    print("Welcome to Pythonic Project Management")
-    get_choice()
+    with open(FILENAME, 'r') as file:
+        projects = retrieve_projects(file)
+        total_projects = len(projects)
+        display_opening_message(total_projects)
+        get_choice()
 
 
 def retrieve_projects(in_file):
     """Return each line of projects.txt as a list of separated strings."""
-    book_entries = [line.strip().split(',') for line in in_file]
-    return book_entries
+    projects = [line.strip().split(',') for line in in_file]
+    return projects
 
+
+def display_opening_message(total_projects):
+    """Display opening message"""
+    print(f"Welcome to Pythonic Project Management\n Loaded {total_projects} from {FILENAME}")
 
 
 def get_choice():
@@ -42,6 +50,9 @@ def get_choice():
         else:
             print("Invalid menu choice.")
         choice = input(">>> ").upper()
+
+
+
 
 
 
