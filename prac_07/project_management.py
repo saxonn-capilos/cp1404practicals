@@ -6,28 +6,36 @@ Actual time: + 40 minutes
 """
 
 import datetime
+from project import Project
+
+
 FILENAME = "projects.txt"
 MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n"
-        "-(U)pdate project\n- (Q)uit")
+        "- (U)pdate project\n- (Q)uit")
+
 
 def main():
     """Run project_management program."""
-    with open(FILENAME, 'r') as file:
-        projects = retrieve_projects(file)
-        total_projects = len(projects)
-        display_opening_message(total_projects)
-        get_choice()
+    projects = retrieve_projects(FILENAME)
+    total_projects = len(projects)
+
+    display_opening_message(total_projects)
+    get_choice()
 
 
-def retrieve_projects(in_file):
-    """Return each line of projects.txt as a list of separated strings."""
-    projects = [line.strip().split(',') for line in in_file]
+def retrieve_projects(file):
+    with open(file, 'r') as in_file:
+        in_file.readline()
+        projects = []
+        for line in in_file:
+            name, start_date, priority, cost_estimate, completion_percentage = line.strip().split('\t')
+            projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
     return projects
 
 
 def display_opening_message(total_projects):
     """Display opening message"""
-    print(f"Welcome to Pythonic Project Management\n Loaded {total_projects} from {FILENAME}")
+    print(f"Welcome to Pythonic Project Management\nLoaded {total_projects} from {FILENAME}")
 
 
 def get_choice():
