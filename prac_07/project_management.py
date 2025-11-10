@@ -2,7 +2,7 @@
 CP1404 - Prac_07
 Do-from-scratch Exercises - Project Management Program
 Estimated time: 240 minutes
-Actual time: + 40 minutes
+Actual time:  + 72 minutes (DNF)
 """
 
 import datetime
@@ -20,10 +20,11 @@ def main():
     total_projects = len(projects)
 
     display_opening_message(total_projects)
-    get_choice()
+    get_choice(projects)
 
 
 def retrieve_projects(file):
+    """Return a list of project objects from reading the given file."""
     with open(file, 'r') as in_file:
         in_file.readline()
         projects = []
@@ -38,7 +39,7 @@ def display_opening_message(total_projects):
     print(f"Welcome to Pythonic Project Management\nLoaded {total_projects} from {FILENAME}")
 
 
-def get_choice():
+def get_choice(projects):
     """Display menu and get choice from user."""
     print(MENU)
     choice = input(">>> ").upper()
@@ -48,7 +49,7 @@ def get_choice():
         elif choice == "S":
             print("save_projects()")
         elif choice == "D":
-            print("display_projects()")
+            display_projects(projects)
         elif choice == "F":
             print("filter_projects()")
         elif choice == "A":
@@ -57,11 +58,20 @@ def get_choice():
             print("update_project()")
         else:
             print("Invalid menu choice.")
+        print(MENU)
         choice = input(">>> ").upper()
 
 
-
-
+def display_projects(projects):
+    """Display incomplete and complete projects."""
+    incomplete_projects = [project for project in projects if project.completion_percentage != '100']
+    complete_projects = [project for project in projects if project.completion_percentage == '100']
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(f"\t{project}")
+    print("Completed projects:")
+    for project in complete_projects:
+        print(f"\t{project}")
 
 
 if __name__ == "__main__":
