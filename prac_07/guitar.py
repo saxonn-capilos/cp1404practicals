@@ -1,0 +1,36 @@
+"""
+CP1404/CP5632 Prac_07
+Intermediate Exercise
+"""
+
+
+class Guitar:
+    """Represent a guitar with name, year, and cost along with other required functions."""
+    def __init__(self, name="", year=0, cost=0):
+        """Construct a Guitar from the given values."""
+        self.name = name
+        self.year = year
+        self.cost = cost
+
+
+    def __str__(self):
+        """Return Guitar in a string format."""
+        return f"{self.name} ({self.year}) : ${self.cost:.2f}"
+
+
+    def __lt__(self, other):
+        """Determine if one guitar is older than the other based on their year."""
+        return self.year < other.year
+
+
+    def get_age(self):
+        """Return how old the guitar is in years (e.g. in 2025 the L-5 is: 2025 - 1922 = 103)."""
+        return 2025 - self.year
+
+    def is_vintage(self):
+        """Returns True if the Guitar is 50 or more years old, False otherwise."""
+        return Guitar.get_age(self) >= 50
+
+    def to_csv(self):
+        """Returns appropriate string format for csv file."""
+        return f"{self.name},{self.year},{self.cost}"
