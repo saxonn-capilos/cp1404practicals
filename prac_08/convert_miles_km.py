@@ -3,40 +3,48 @@ CP1404 - Prac 08
 Do-from-scratch Exercise
 Miles to Kilometres Converter
 Estimated Time: 60 minutes
-Actual Time:
+Actual Time: 95 minutes
 """
 
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import StringProperty
 
+CONVERSION_FACTOR = 1.60934
+
 
 class MilesToKilometresApp(App):
     """MilesToKilometresApp is a kivy app that converts a number of miles to kilometres."""
-    message = StringProperty()
+    output_km = StringProperty()
 
     def build(self):
         """Build the Kivy app from the kv file."""
         self.title = "Miles to Kilometres"
         self.root = Builder.load_file('convert_miles_km.kv')
-        self.message = "Enter distance in miles and press \"Convert miles to km\""
         return self.root
 
-    def convert_miles_km(self, value):
-        """Convert number of miles to kilometres."""
-        try:
-            result = float(value) * 1.60934
-            self.root.ids.output_label.text = str(result)
-        except ValueError:
-            self.root.ids.output_label.text = str(0.0)
+    def handle_calculate(self, text):
+        """Handle calculation from user input."""
+        miles = self.convert_to_float(text)
+        self.convert_miles_km(miles)
 
-    def handle_increment(self, increment):
-        """Increase the user input by the increment given."""
+    def convert_miles_km(self, miles_input):
+        """Convert number of miles to kilometres."""
+        self.output_km = str(miles_input * CONVERSION_FACTOR)
+
+    def handle_increment(self, text, increment):
+        """Increase the user input by the increment given when up/down button is pressed."""
+        miles = self.convert_to_float(text) + increment
+        self.root.ids.input_miles.text = str(miles)
+
+
+    @staticmethod
+    def convert_to_float(text):
+        """Convert text to float or 0.0 if invalid."""
         try:
-            current_value = float(self.root.ids.miles_input.text)
-            self.root.ids.miles_input.text = str(current_value + increment)
+            return float(text)
         except ValueError:
-            self.root.ids.miles_input.text = str(increment)
+            return 0.0
 
 
 MilesToKilometresApp().run()
